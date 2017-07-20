@@ -1,7 +1,7 @@
 #!/bin/bash
 describe "attendee service"
   describe "GET / `which curl`"
-    [[ -z `which curl` ]] && sudo apt-get install curl 
+    apt-get update && apt-get install -y curl 
     http_result=`curl -s -o /dev/null -H 'Accept: application/json' $ATTENDEE_SERVICE_URL -w "%{http_code},%{content_type}"`
     http_code=`echo $http_result | cut -d, -f1`
     content_type=`echo $http_result | cut -d, -f2`
